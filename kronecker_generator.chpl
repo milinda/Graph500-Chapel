@@ -87,7 +87,7 @@ module GRAPH500_Kronecker_Generator
 
       fillRandom(randArray);
       [j in DM] jj_bit[j] = if (randArray[j] > c_norm * ii_bit[j] + a_norm*not(ii_bit[j])) then 1 else 0;
-      
+
       [j in DM] ii_jj[1,j] = ii_bit[j];
       [j in DM] ii_jj[2,j] = jj_bit[j];
 
@@ -115,11 +115,11 @@ module GRAPH500_Kronecker_Generator
 
     var weightD: domain(1) = [fEdgeArray.domain.dim(2)];
     var weightArray: [weightD] int;
-    
+
     var tmpWeightArray : [weightD] real;
     fillRandom(tmpWeightArray);
     [j in weightD] weightArray[j] = (tmpWeightArray[j] * 255) : int(64);
-    
+
 
     var weightedEdgeListDomain: domain(2) = [1..3, fEdgeArray.domain.dim(2)];
     var weightedEdgeList: [weightedEdgeListDomain] int(64);
@@ -131,6 +131,7 @@ module GRAPH500_Kronecker_Generator
     return weightedEdgeList;
   }
 
+  // SCALE should be at least 26 to get non-zero output from this procedure.
   proc scramble(val: int(64), SCALE: int, seed0: uint(64), seed1: uint(64)){
     var v: uint(64) = val:uint(64);
     v += seed0 + seed1;

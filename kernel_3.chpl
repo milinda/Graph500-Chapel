@@ -1,8 +1,8 @@
 module GRAPH500_Kernel_3 {
-	proc kernel_3(G:[], root:int){
+	proc kernel_3(G:[], r:int){
 		var N: int = G.domain.dim(1).last;
 		// Adust from zero labels.
-		root = root + 1;
+		var root = r + 1;
 		var inf = 9223372036854775807; // represents infinity for weights
 		var d: [1 .. N] int = inf;
 		var parent: [1 .. N] int = 0;
@@ -51,13 +51,12 @@ module GRAPH500_Kernel_3 {
 		return (min, minIdx);
 	}
 	
-	proc main()
-	{
-		var arr: [1 .. 4] int = (1,5,0,3);
-		writeln(min(arr));
-		var tup = (1,2);
-		writeln(tup);
+	proc main(){
+		var D: domain(2) = [1..5,1..5];
+		var G: [D] int = ((0,4,2,0,0),(4,0,5,0,1),(2,5,0,1,0),(0,0,1,0,1),(0,1,0,1,0));
+		writeln(G);
+		writeln(kernel_3(G,0));
 		
-		writeln (tup(1));
 	}
+		
 }
